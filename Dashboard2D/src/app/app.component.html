@@ -1,6 +1,16 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/impressum">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
+
+<div class="display flexRow">
+  <div class="display flexColumn navBackground pedding navHeight">
+    
+    <nav class="display flexColumn ">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/impressum">Impressum</a>
+    </nav>
+  </div>
+<div class="display flexColumn headerGrow">
+  <div class="display flexRow pedding headerBoxShadow headerTopBorder headerMargin"><h1>{{title}}</h1></div>
+  <div class="pedding"><router-outlet ></router-outlet></div>
+</div>
+  
+
+</div>
