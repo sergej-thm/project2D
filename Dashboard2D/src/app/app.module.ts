@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
     ImpressumComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
