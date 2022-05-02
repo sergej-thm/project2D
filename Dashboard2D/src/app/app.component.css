@@ -1,6 +1,6 @@
 /* Flex */
 .display{
-  display: flex;
+  display: flex !important;
 }
 .flexColumn{
   flex-direction: column;
@@ -77,6 +77,30 @@ nav a {
   border-radius: 4px;
 }
 
+nav a:hover {
+  color: white;
+  background-color: #2c3344;
+}
+nav a.active {
+  background-color: #2c3344;
+}
+
+.navGap{
+  gap: 1em;
+}
+.navAlign{
+  align-items: end;
+}
+
+.navBackground{
+  background-color: #0f172a;
+}
+
+.navHeight {
+	height: 100vh;
+}
+
+
 .headerMargin h1{
   margin-top: .5em;
   margin-bottom: .5em;
@@ -94,21 +118,6 @@ nav a {
   box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.1);
 }
 
-nav a:hover {
-  color: white;
-  background-color: #2c3344;
-}
-nav a.active {
-  background-color: #2c3344;
-}
-
-.navBackground{
-  background-color: #0f172a;
-}
-
-.navHeight {
-	height: 100vh;
-}
 
 /*
 Copyright Google LLC. All Rights Reserved.

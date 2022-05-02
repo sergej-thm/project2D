@@ -3,12 +3,12 @@
   <div class="display flexColumn navBackground pedding navHeight">
     
     <nav class="display flexColumn ">
-      <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/impressum">Impressum</a>
+      <a routerLink="/dashboard"class="display flexRow navGap navAlign"><mat-icon>multiline_chart</mat-icon>Dashboard</a>
+      <a routerLink="/impressum" class="display flexRow navGap navAlign"><mat-icon>person</mat-icon>Impressum</a>
     </nav>
   </div>
 <div class="display flexColumn headerGrow">
-  <div class="display flexRow pedding headerBoxShadow headerTopBorder headerMargin"><h1>{{title}}</h1></div>
+  <div class="display flexRow pedding headerBoxShadow headerTopBorder headerMargin"><h1>{{title}}</h1> </div>
   <div class="pedding"><router-outlet ></router-outlet></div>
 </div>
   
