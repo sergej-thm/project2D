@@ -7,7 +7,17 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  chartOption: EChartsOption = {
+  chartType: string = 'bar';
+
+  data: any = [        
+    { value: 1048, name: 'Search Engine' },
+    { value: 735, name: 'Direct' },
+    { value: 580, name: 'Email' },
+    { value: 484, name: 'Union Ads' },
+    { value: 300, name: 'Video Ads' }
+];
+
+  chartLineOption: EChartsOption = {
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -17,14 +27,43 @@ export class DashboardComponent implements OnInit {
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: this.data,
         type: 'line',
       },
-    ],
-  };
-  constructor() { }
+    ],};
+
+
+  chartBarOption: EChartsOption = {
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: this.data,
+        type: 'bar',
+      },
+    ],};
+
+    chartPieOption: EChartsOption = {
+      series: [
+        {
+          data: this.data,
+          type: 'pie',
+        },
+      ],};
+  
+
+  constructor() { 
+
+
+  }
 
   ngOnInit(): void {
+
   }
 
 

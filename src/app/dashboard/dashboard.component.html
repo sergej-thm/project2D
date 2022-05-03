@@ -1,4 +1,18 @@
-<mat-card class="backgroundColor marginTop">
-    <div echarts [options]="chartOption" class="demo-chart"></div>
-</mat-card>
 
+<mat-tab-group>
+    <mat-tab label="Linien"> 
+        <mat-card class="backgroundColor marginTop">
+            <div echarts [options]="chartLineOption" class="demo-chart"></div>
+        </mat-card>    
+    </mat-tab>
+    <mat-tab label="Balken">
+        <mat-card class="backgroundColor marginTop">
+            <div echarts [options]="chartBarOption" class="demo-chart"></div>
+        </mat-card>  
+    </mat-tab>
+    <mat-tab label="Kuchen">
+        <mat-card class="backgroundColor marginTop">
+            <div echarts [options]="chartPieOption" class="demo-chart"></div>
+        </mat-card>  
+    </mat-tab>
+  </mat-tab-group>

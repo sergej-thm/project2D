@@ -14,6 +14,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatTabsModule} from '@angular/material/tabs';
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     }),
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
