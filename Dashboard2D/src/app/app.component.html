@@ -1,10 +1,10 @@
 
 <div class="display flexRow">
   <div class="display flexColumn navBackground pedding navHeight">
-    
+    <div class="display flexRow pedding headerMargin"><h1>&nbsp;</h1> </div>
     <nav class="display flexColumn ">
-      <a routerLink="/dashboard"class="display flexRow navGap navAlign"><mat-icon>multiline_chart</mat-icon>Dashboard</a>
-      <a routerLink="/impressum" class="display flexRow navGap navAlign"><mat-icon>person</mat-icon>Impressum</a>
+      <a routerLink="/dashboard"class="display flexRow navGap navAlign" (click)="changeTitle('Dashboard')"><mat-icon>multiline_chart</mat-icon>Dashboard</a>
+      <a routerLink="/impressum" class="display flexRow navGap navAlign" (click)="changeTitle('Impressum')"><mat-icon>person</mat-icon>Impressum</a>
     </nav>
   </div>
 <div class="display flexColumn headerGrow">
