@@ -12,116 +12,7 @@ import { IData } from '../dataInterface';
 export class DashboardComponent implements OnInit {
 
 
-  data: any = [
-    {
-        value: "1269709",
-        name: "Garth Henry"
-    },
-    {
-        value: "1662841",
-        name: "Barry Moss"
-    },
-    {
-        value: "399442",
-        name: "Catherine Bishop"
-    },
-    {
-        value: "314212",
-        name: "Jarrod Stafford"
-    },
-    {
-        value: "1474549",
-        name: "Sierra Tate"
-    },
-    {
-        value: "1465796",
-        name: "Tanya Coleman"
-    },
-    {
-        value: "1165195",
-        name: "Gregory Harrington"
-    },
-    {
-        value: "280848",
-        name: "Pandora Fowler"
-    },
-    {
-        value: "1492819",
-        name: "Jenette Golden"
-    },
-    {
-        value: "1087818",
-        name: "Uriel Cobb"
-    },
-    {
-        value: "258262",
-        name: "Dillon Colon"
-    },
-    {
-        value: "733477",
-        name: "Clio Parks"
-    },
-    {
-        value: "926646",
-        name: "Gloria Bowen"
-    },
-    {
-        value: "768480",
-        name: "Cyrus Bowen"
-    },
-    {
-        value: "1141024",
-        name: "Joan Day"
-    },
-    {
-        value: "349212",
-        name: "Perry Keller"
-    },
-    {
-        value: "1442241",
-        name: "Wing Tyson"
-    },
-    {
-        value: "869539",
-        name: "Brian Stanton"
-    },
-    {
-        value: "676031",
-        name: "Ella Mccormick"
-    },
-    {
-        value: "1984383",
-        name: "Clinton Neal"
-    },
-    {
-        value: "222862",
-        name: "Timon Hayes"
-    },
-    {
-        value: "215224",
-        name: "Molly Booth"
-    },
-    {
-        value: "1833942",
-        name: "Brennan Grant"
-    },
-    {
-        value: "1047717",
-        name: "Vance Dixon"
-    },
-    {
-        value: "1066199",
-        name: "Russell Madden"
-    },
-    {
-        value: "1365399",
-        name: "Lysandra Rogers"
-    },
-    {
-        value: "512437",
-        name: "Seth Daugherty"
-    },
-];
+  data: any = [];
   category: any = [
     "Garth Henry",
     "Barry Moss",
@@ -160,9 +51,9 @@ export class DashboardComponent implements OnInit {
       trigger: 'axis'
     },
     xAxis: {
-      name: "Woche",
+      name: "Monat",
       type: 'category',
-      //data: this.data.name
+      data: []
     },
     yAxis: {
       name: "Einnahmen",
@@ -170,7 +61,7 @@ export class DashboardComponent implements OnInit {
     },
     series: [
       {
-        data: this.data,
+        data: [],
         type: 'line',
         encode: {
           x: 'value',
@@ -190,15 +81,15 @@ export class DashboardComponent implements OnInit {
       trigger: 'axis'
     },
     xAxis: {
-      name: "Mitarbeiter",
+      name: "Länder",
       type: 'category',
       data: this.category,
       axisLabel: {
-        rotate: 30
+        rotate: 50
       },
     },
     yAxis: {
-      name: "Umsatz",
+      name: "Unternehmen",
       type: 'value',
     },
     series: [
@@ -206,22 +97,31 @@ export class DashboardComponent implements OnInit {
         data: this.data,
         type: 'bar',
       },
-    ],};
+    ],
+    grid:{
+      containLabel: true,
+    }
+  };
 
     chartPieOption: EChartsOption = {
       title: {
-        text: 'Kuchen Diagramm'
+        text: 'Marktanteil der Unternehmen'
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        valueFormatter: (value) => value + ' %'
       },
       series: [
         {
-          data: this.data,
+          data: [],
           type: 'pie',
         },
       ],};
   
+  mergeLineOptions: EChartsOption = {};
+  mergeBarOptions: EChartsOption = {};
+  mergePieOptions: EChartsOption = {};
+
   constructor(
     private _myData: DataService
   ) { 
@@ -229,12 +129,64 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createLineChartOptions();
+    this.createBarChartOptions();
+    this.createPieChartOptions();
+  }
+
+  ngAfterInitView(): void {
 
   }
 
 
+  createLineChartOptions(){
+    let data: any[] = [];
+    let xAxis: any[] = [];
 
+    this._myData.dataCompanies.forEach(company =>{
+      data.push(company.balance);
+      xAxis.push(company.month);
+    });
 
+    this.mergeLineOptions = {
+      xAxis:{ data: xAxis },
+      series: [{ data: data }],
+    }
+  }
 
+  createBarChartOptions(){
+    let data: any[] = [];
+    let xAxis: any[] = [];
+
+    this._myData.dataCountries.forEach(country =>{
+      data.push(country.companies);
+      xAxis.push(country.country);
+    });
+
+    this.mergeBarOptions = {
+      xAxis:{ data: xAxis },
+      series: [{ data: data }],
+    }
+  }
+
+  createPieChartOptions(){
+    let data: any[] = [];
+    let xAxis: any[] = [];
+    let allSales = 0.0;
+
+    this._myData.dataCompanies.forEach(company =>{
+      allSales += company.balance;
+    });
+
+    this._myData.dataCompanies.forEach(company =>{
+      let percent = (company.balance / allSales * 100);
+      let round = Math.round(percent * 100) / 100;
+      data.push({name: company.company, value: round});
+    });
+
+    this.mergePieOptions = {
+      series: [{ data: data }],
+    }
+  }
 
 }

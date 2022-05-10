@@ -2,17 +2,17 @@
 <mat-tab-group>
     <mat-tab label="Linien"> 
         <mat-card class="backgroundColor marginTop">
-            <div echarts [options]="chartLineOption" class="demo-chart"></div>
+            <div echarts [options]="chartLineOption" class="demo-chart" [merge]="mergeLineOptions"></div>
         </mat-card>    
     </mat-tab>
     <mat-tab label="Balken">
         <mat-card class="backgroundColor marginTop">
-            <div echarts [options]="chartBarOption" class="demo-chart"></div>
+            <div echarts [options]="chartBarOption" class="demo-bar" [merge]="mergeBarOptions"></div>
         </mat-card>  
     </mat-tab>
     <mat-tab label="Kuchen">
         <mat-card class="backgroundColor marginTop">
-            <div echarts [options]="chartPieOption" class="demo-chart"></div>
+            <div echarts [options]="chartPieOption" class="demo-chart" [merge]="mergePieOptions"></div>
         </mat-card>  
     </mat-tab>
   </mat-tab-group>

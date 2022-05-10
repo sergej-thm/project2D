@@ -2,6 +2,11 @@
     height: 400px;
   }
 
+  .demo-bar {
+    height: 700px !important;
+  }
+
+
 .backgroundColor{
     background-color: white;
 }
