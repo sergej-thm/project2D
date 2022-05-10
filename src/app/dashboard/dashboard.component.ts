@@ -12,36 +12,6 @@ import { IData } from '../dataInterface';
 export class DashboardComponent implements OnInit {
 
 
-  data: any = [];
-  category: any = [
-    "Garth Henry",
-    "Barry Moss",
-    "Catherine Bishop",
-    "Jarrod Stafford",
-    "Sierra Tate",
-    "Tanya Coleman",
-    "Gregory Harrington",
-    "Pandora Fowler", 
-    "Jenette Golden",
-    "Uriel Cobb",
-    "Dillon Colon",
-    "Clio Parks",  
-    "Gloria Bowen",
-    "Cyrus Bowen",
-    "Joan Day",  
-    "Perry Keller",
-    "Wing Tyson",
-    "Brian Stanton",
-    "Ella Mccormick", 
-    "Clinton Neal",
-    "Timon Hayes",
-    "Molly Booth",
-    "Brennan Grant",
-    "Vance Dixon",
-    "Russell Madden",
-    "Lysandra Rogers",
-    "Seth Daugherty"
-]
 
   chartLineOption: EChartsOption = {
     title: {
@@ -83,7 +53,7 @@ export class DashboardComponent implements OnInit {
     xAxis: {
       name: "Länder",
       type: 'category',
-      data: this.category,
+      data: [],
       axisLabel: {
         rotate: 50
       },
@@ -94,7 +64,7 @@ export class DashboardComponent implements OnInit {
     },
     series: [
       {
-        data: this.data,
+        data: [],
         type: 'bar',
       },
     ],
