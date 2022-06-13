@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faTShirt } from '@fortawesome/free-solid-svg-icons';
-import { EChartsOption } from 'echarts';
+import { EChartsOption, registerMap } from 'echarts';
 import { DataService } from '../data.service';
 import { IData } from '../dataInterface';
 
@@ -11,6 +11,8 @@ import { IData } from '../dataInterface';
 })
 export class DashboardComponent implements OnInit {
 
+//Wolrd MAP
+//https://datamatic-public.github.io/echarts-2.1.10/doc/example/map13.html
 
 
   chartLineOption: EChartsOption = {
@@ -88,20 +90,70 @@ export class DashboardComponent implements OnInit {
         },
       ],};
   
+      worldOption: EChartsOption = {
+        title : {
+            text : 'Worldmap',
+            subtext: 'by 江江的喵',
+            link: 'Quelle: https://datamatic-public.github.io/echarts-2.1.10/doc/example/map13.html#infographic',
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: function (params: any){
+                var value = "Einwohner: " + params.value;
+                return params.name + ' <br /> ' + value;
+            }
+        },
+        toolbox: {
+            show : true,
+            orient : 'vertical',
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        series : [
+            {
+                name: 'Worldmap',
+                type: 'map',
+                map: 'Worldmap',
+                roam: true,
+                data:[
+                    {name: 'asia', value: 8967.69},
+                    {name: 'australia', value: 592.09},
+                    {name: 'europe', value: 183.62},
+                    {name: 'north_america', value: 41.63},
+                    {name: 'south_america', value: 10.41},
+                    {name: 'africa', value: 22.5837}
+                ]
+            }
+        ]
+    };
+
+
   mergeLineOptions: EChartsOption = {};
   mergeBarOptions: EChartsOption = {};
   mergePieOptions: EChartsOption = {};
+  mergeWorldOptions: EChartsOption = {};
 
   constructor(
     private _myData: DataService
   ) { 
-
+    
   }
 
   ngOnInit(): void {
+
+
+    registerMap('Worldmap', this._myData.dataWorld);
+
+
     this.createLineChartOptions();
     this.createBarChartOptions();
     this.createPieChartOptions();
+    this.createWorldChartOption();
+
   }
 
   ngAfterInitView(): void {
@@ -159,4 +211,26 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  createWorldChartOption(){
+    let data: any[] = [{name: 'asia', value: 0},
+    {name: 'australia', value: 0},
+    {name: 'europe', value: 0},
+    {name: 'north_america', value: 0},
+    {name: 'south_america', value: 0},
+    {name: 'africa', value: 0}];
+
+    let feature: any = {type: "", properties: {name: ""}, geometry: {type: "", coordinates: [[[0,1],[0,1],[0,1]],[[0,1],[0,1]],[[0,1]],[[0,1]]]}}
+
+    this._myData.dataCountries.forEach(country =>{
+        data.forEach(continent =>{
+            if(continent.name === country.continent){
+              continent.value = continent.value + country.resident;
+            }
+        });
+    });
+    this.mergeWorldOptions = {
+      series: [{ data: data }],
+    }
+  }
+  
 }
