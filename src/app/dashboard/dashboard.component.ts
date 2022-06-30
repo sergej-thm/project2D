@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
     xAxis: {
       name: "Länder",
       type: 'category',
+      max: 10,
       data: [],
       axisLabel: {
         rotate: 50
@@ -68,6 +69,9 @@ export class DashboardComponent implements OnInit {
       {
         data: [],
         type: 'bar',
+        label: {
+          show: true
+        }
       },
     ],
     grid:{
