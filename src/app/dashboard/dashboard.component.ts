@@ -80,6 +80,10 @@ export class DashboardComponent implements OnInit {
   };
 
     chartPieOption: EChartsOption = {
+      legend: {
+        orient: 'vertical',
+        left: 'right',
+      },
       title: {
         text: 'Marktanteil der Unternehmen'
       },
@@ -91,6 +95,10 @@ export class DashboardComponent implements OnInit {
         {
           data: [],
           type: 'pie',
+          label: {
+            show: true,
+            formatter: (value) => value.name + '\n'+ value.value + ' %'
+          },
         },
       ],};
   
@@ -123,6 +131,9 @@ export class DashboardComponent implements OnInit {
                 type: 'map',
                 map: 'Worldmap',
                 roam: true,
+                label: {
+                  show: true
+                },
                 data:[
                     {name: 'asia', value: 8967.69},
                     {name: 'australia', value: 592.09},
