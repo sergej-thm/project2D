@@ -69,9 +69,6 @@ export class DashboardComponent implements OnInit {
       {
         data: [],
         type: 'bar',
-        label: {
-          show: true
-        }
       },
     ],
     grid:{
